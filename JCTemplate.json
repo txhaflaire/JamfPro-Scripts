@@ -28,7 +28,7 @@
                 "azCliVersion": "2.45.0",
                 "timeout": "PT1H",
                 "retainOutput": true,
-                "scriptContent": "[concat('#!/bin/bash\n\naz login\naz ad app create --display-name JCTEST --is-fallback-public-client true --public-client-redirect-uris https:/127.0.0.1/jamfconnect --sign-in-audience AzureADMyOrg')]",
+                "scriptContent": "[concat('#!/bin/bash\n\naz login\naz ad app create --display-name JCTEST --is-fallback-public-client true --sign-in-audience AzureADMyOrg')]",
                 "cleanupPreference": "OnSuccess",
                 "retentionInterval": "PT1H"
             }
