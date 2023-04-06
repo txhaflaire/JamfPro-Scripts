@@ -4,9 +4,16 @@
     "parameters": {
         "appName": {
             "type": "string",
+            "defaultValue": "Jamf Connect",
             "metadata": {
-                "description": "The name of the App Registration",
-                "defaultValue": "https://127.0.0.1/jamfconnect"
+                "description": "The name of the App Registration"
+            }
+        },
+        "Redirect URI": {
+            "type": "string",
+            "defaultValue": "https://127.0.0.1/jamfconnect",
+            "metadata": {
+                "description": "The name of the App Registration"
             }
         }
     },
