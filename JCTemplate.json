@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the App Registration",
+                "defaultValue": "https://127.0.0.1/jamfconnect"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deploymentScripts",
+            "apiVersion": "2020-10-01",
+            "name": "[parameters('appName')]",
+            "location": "[resourceGroup().location]",
+            "kind": "AzureCLI",
+            "properties": {
+                "azCliVersion": "2.45.0",
+                "timeout": "PT1H",
+                "retainOutput": true,
+                "scriptContent": "[concat('#!/bin/bash\n\naz login\naz ad app create --display-name JCTEST --is-fallback-public-client true --public-client-redirect-uris https:/127.0.0.1/jamfconnect --sign-in-audience AzureADMyOrg')]",
+                "cleanupPreference": "OnSuccess",
+                "retentionInterval": "PT1H"
+            }
+        }
+    ],
+    "outputs": {
+        "output": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.Resources/deploymentScripts', parameters('appName')), '2020-10-01').properties.output]"
+        }
+    }
+}
